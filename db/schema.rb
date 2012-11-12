@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112043243) do
+ActiveRecord::Schema.define(:version => 20121112212617) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_option_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20121112043243) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "daily_quizzes", :force => true do |t|
+    t.date     "date"
+    t.integer  "quiz_definition_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "daily_quizzes", ["date"], :name => "index_daily_quizzes_on_date"
+  add_index "daily_quizzes", ["quiz_definition_id"], :name => "index_daily_quizzes_on_quiz_definition_id"
 
   create_table "players", :force => true do |t|
     t.string   "username"
@@ -62,9 +72,12 @@ ActiveRecord::Schema.define(:version => 20121112043243) do
 
   create_table "quizzes", :force => true do |t|
     t.integer  "player_id"
-    t.integer  "quiz_definition_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "daily_quiz"
+    t.integer  "daily_quiz_id"
   end
+
+  add_index "quizzes", ["daily_quiz_id"], :name => "index_quizzes_on_daily_quiz_id"
 
 end
