@@ -17,8 +17,11 @@ class QuizController < ApplicationController
       answer = Answer.new
       answer.quiz = @quiz
       answer.question_option = QuestionOption.find(option_id)
+      answer.save
       
     end
+    
+    @quiz.save
     
   end
 
