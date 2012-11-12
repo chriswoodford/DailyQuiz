@@ -9,6 +9,7 @@ QuizApplication::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/quiz', to: 'quiz#index'
+  match '/quiz/take', to: 'quiz#create'
   
   match '/login',  to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete  

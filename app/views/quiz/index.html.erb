@@ -1,17 +1,36 @@
-<% @quiz.questions.each do |question| %>
-<div class="row">
-
-  <div class="span12">
-    
-    <p class="lead"><%= question.question %></p>
-    
-    <ul>
-      <% question.question_options.each do |option| %>
-      <li><%= option.answer %></li>
-      <% end %>
-    </ul>
-    
-  </div>
+<div id="quiz">
   
+  <%= form_tag(quiz_take_path, { class: 'form-horizontal', method: 'post' } ) do %>
+  
+    <% @quiz.questions.each do |question| %>
+    <div class="row question">
+    
+      <div class="span12">
+        
+        <p class="lead"><%= question.question %></p>
+        
+        <ul class"question-options">
+          <% question.question_options.shuffle.each do |option| %>
+          <li>
+            <% name = "questions[#{question.id}]" %>
+            <% radio_button = radio_button_tag(name, option.id, false) %>
+            <%= label_tag '', 
+                  radio_button + ' ' + option.answer, 
+                  class: 'radio' %>          
+          </li>
+          <% end %>
+        </ul>
+        
+      </div>
+      
+    </div>
+    <% end %>
+  
+    <div class="form-actions">
+      <%= submit_tag "Submit your answers", class: "btn btn-large btn-primary" %>
+      <a href="<%= root_path %>" class="btn btn-large">Cancel</a>
+    </div>
+  
+  <% end %>
+
 </div>
-<% end %>
