@@ -15,7 +15,7 @@
       </div><!--/.nav-collapse -->
       <% else %>
       <div class="pull-right">
-        Hi, <%= 'Name' %>! | <%= link_to "Logout", logout_path, method: "delete" %>
+        Hi, <%= current_user.name %>! | <%= link_to "Logout", logout_path, method: "delete" %>
       </div>
       <% end %>
     </div>
