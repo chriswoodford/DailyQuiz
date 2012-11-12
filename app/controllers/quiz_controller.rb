@@ -2,6 +2,11 @@ class QuizController < ApplicationController
 
   def index
 
+    if (!signed_in?)
+      redirect_to login_path
+      return
+    end
+
     @quiz_definition = current_quiz.quiz_definition
     @quiz = current_quiz.quizzes.where(player_id: current_user).first
     
@@ -12,6 +17,11 @@ class QuizController < ApplicationController
   end
 
   def create
+
+    if (!signed_in?)
+      redirect_to login_path
+      return
+    end
 
     @quiz_definition = current_quiz.quiz_definition
 

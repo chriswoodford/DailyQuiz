@@ -28,7 +28,7 @@
   
   <div class="span4">
     
-    <% if current_user.has_played_today? %>
+    <% if signed_in? && current_user.has_played_today? %>
     <div class="well">
       <p class="lead text-info">You've already played today!</p>
     </div>
