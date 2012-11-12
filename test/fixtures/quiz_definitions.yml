@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: quiz_definitions
+#
+#  id          :integer          not null, primary key
+#  difficulty  :integer
+#  category_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  difficulty: 1
+
+two:
+  difficulty: 1

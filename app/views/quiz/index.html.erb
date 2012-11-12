@@ -1,0 +1,17 @@
+<% @quiz.questions.each do |question| %>
+<div class="row">
+
+  <div class="span12">
+    
+    <p class="lead"><%= question.question %></p>
+    
+    <ul>
+      <% question.question_options.each do |option| %>
+      <li><%= option.answer %></li>
+      <% end %>
+    </ul>
+    
+  </div>
+  
+</div>
+<% end %>

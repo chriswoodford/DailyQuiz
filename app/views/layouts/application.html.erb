@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	
+  <head>
+    <title>Daily Quiz</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body>
+
+    <%= render "layouts/header" %>
+
+    <div class="container">
+
+      <%= render "shared/flash" %>      
+      
+		  <%= yield %>
+
+    </div>
+
+    <%= render "shared/login_modal" %>
+    <%= render "layouts/footer" %>
+    
+  </body>
+	
+</html>

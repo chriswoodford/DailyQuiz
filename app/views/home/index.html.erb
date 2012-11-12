@@ -1,0 +1,101 @@
+<div class="row" id="home">
+  
+  <div class="span12">
+    
+    <h1>Daily Quiz</h1>
+    
+  </div>
+
+  <div class="span8">
+    
+    <ul>
+      
+      <li>
+        <i class="icon-globe"></i> 
+        Today's topic is: <%= @quiz.category.name %> 
+        (Difficulty: <%= @quiz.difficulty %> / 5)
+      </li>
+      <li><i class="icon-time"></i> Today's game ends in: 7 hours, 41 mins</li>
+      <li><i class="icon-user"></i> 5 players have played so far</li>
+      
+    </ul>
+    
+  </div>
+  
+  <div class="span4">
+    
+    <% if signed_in? %>
+    <a href="<%= url_for :controller => 'quiz', :action => 'index' %>" class="btn btn-large btn-block btn-primary">Play Now!</a>
+    <% else %>
+    <a href="#login" role="button" data-toggle="modal" class="btn btn-large btn-block btn-primary">Play Now!</a>
+    <% end %>
+    
+  </div>
+  
+</div>
+
+<div class="row">
+  
+  <div class="span12">
+    
+    <h1>Today's Scores</h1>
+    
+    <table class="table table-striped">
+      
+      <thead>
+        
+        <tr>
+          <th>Player</th>
+          <th>Correct</th>
+          <th>Time (s)</th>
+          <th>Score</th>
+        </tr>
+        
+      </thead>
+      <tfoot></tfoot>
+      
+      <tbody>
+        
+        <tr>
+          <td>Chris</td>
+          <td>9</td>
+          <td>95</td>
+          <td>805</td>
+        </tr>
+        
+        <tr>
+          <td>Sarah</td>
+          <td>9</td>
+          <td>98</td>
+          <td>802</td>
+        </tr>
+
+        <tr>
+          <td>Grissom</td>
+          <td>8</td>
+          <td>50</td>
+          <td>750</td>
+        </tr>
+        
+        <tr>
+          <td>Willow</td>
+          <td>7</td>
+          <td>100</td>
+          <td>600</td>
+        </tr>
+
+        <tr>
+          <td>Horatio</td>
+          <td>3</td>
+          <td>200</td>
+          <td>100</td>
+        </tr>
+
+      </tbody>
+      
+    </table>
+    
+  </div>
+  
+</div>
+
