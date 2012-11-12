@@ -1,2 +1,33 @@
-<%= debug(@quiz) %>
-<%= debug(@quiz.answers) %>
+<div id="quiz">
+
+    <% @quiz_definition.questions.each_with_index do |question,key| %>
+    <div class="row question">
+    
+      <div class="span12">
+        
+        <p class="lead"><%= question.question %></p>
+        
+        <div class="well">
+
+          <ul>
+            <li>
+              <span class="label label-info">Correct Answer</span>
+              <%= question.correct_answer.answer %>
+            </li>
+            <li>
+              <% answer = @quiz.answers[key] %>
+              <span class="label label-<%= answer && answer.is_correct? ? 'success' : 'important' %>">Your Answer</span>
+              <% if answer %>
+                <%= answer.question_option.answer %>
+              <% end %>
+            </li>
+          </ul>
+          
+        </div>
+          
+      </div>
+    
+    </div>
+    <% end %>
+
+</div>

@@ -10,7 +10,13 @@
 #
 
 class Question < ActiveRecord::Base
+  
   belongs_to :quiz_definition
   has_many :question_options
   attr_accessible :question
+  
+  def correct_answer()
+    return self.question_options.where(is_correct: 1).first    
+  end
+  
 end

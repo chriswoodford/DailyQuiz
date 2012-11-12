@@ -8,6 +8,8 @@ class QuizController < ApplicationController
 
   def create
 
+    @quiz_definition = current_quiz
+
     @quiz = Quiz.new
     @quiz.player = current_user
     @quiz.quiz_definition = current_quiz
