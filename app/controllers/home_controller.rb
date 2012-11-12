@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @quiz = QuizDefinition.all.first
+    @quiz = QuizDefinition.first
   end
   
 end
