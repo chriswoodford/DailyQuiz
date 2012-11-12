@@ -1,18 +1,23 @@
 class QuizController < ApplicationController
 
   def index
+
+    @quiz_definition = current_quiz.quiz_definition
+    @quiz = current_quiz.quizzes.where(player_id: current_user).first
     
-    @quiz = current_quiz
-        
+    if current_user.has_played_today?
+      render 'show'      
+    end
+ 
   end
 
   def create
 
-    @quiz_definition = current_quiz
+    @quiz_definition = current_quiz.quiz_definition
 
     @quiz = Quiz.new
     @quiz.player = current_user
-    @quiz.quiz_definition = current_quiz
+    @quiz.daily_quiz = current_quiz
     
     params[:questions].each do |question_id, option_id|
     
@@ -25,6 +30,8 @@ class QuizController < ApplicationController
     
     @quiz.save
     
+    render 'show'
+    
   end
-
+  
 end

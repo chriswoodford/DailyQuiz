@@ -6,18 +6,25 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to "Daily Quiz", root_path, class: 'brand' %>      
-      <% if !signed_in? %>
+      <%= link_to "Daily Quiz", root_path, class: 'brand' %>
+      <% if signed_in? %>
+      <span>
+        Hi, <%= current_user.name %>!
+      </span>
+      <% end %>
       <div class="nav-collapse collapse pull-right">
         <ul class="nav">
-          <li><a href="#login" role="button" data-toggle="modal">Login</a></li>
+          <% if !signed_in? %>
+          <li>
+            <a href="#login" role="button" data-toggle="modal">Login</a>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to "Logout", logout_path, method: "delete" %>
+          </li>
+          <% end %>
         </ul>
       </div><!--/.nav-collapse -->
-      <% else %>
-      <div class="pull-right">
-        Hi, <%= current_user.name %>! | <%= link_to "Logout", logout_path, method: "delete" %>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>

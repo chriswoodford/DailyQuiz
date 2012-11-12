@@ -2,7 +2,7 @@
   
   <%= form_tag(quiz_take_path, { class: 'form-horizontal', method: 'post' } ) do %>
   
-    <% @quiz.questions.each do |question| %>
+    <% @quiz_definition.questions.each do |question| %>
     <div class="row question">
     
       <div class="span12">

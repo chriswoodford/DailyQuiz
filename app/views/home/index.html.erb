@@ -15,26 +15,39 @@
         Today's topic is: <%= @daily_quiz.quiz_definition.category.name %> 
         (Difficulty: <%= @daily_quiz.quiz_definition.difficulty %> / 5)
       </li>
-      <li><i class="icon-time"></i> Today's game ends in: <%= distance_of_time_in_words_to_now(DateTime.tomorrow, ) %></li>
-      <li><i class="icon-user"></i> <%= @daily_quiz.quizzes.count %> players have played so far</li>
-      
+      <li><i class="icon-time"></i> Today's game ends in: <%= distance_of_time_in_words_to_now(DateTime.tomorrow) %></li>
+      <li>
+        <i class="icon-user"></i> 
+        <%= pluralize(@daily_quiz.quizzes.count, 'player') %> 
+        <%= (@daily_quiz.quizzes.count == 1) ? 'has' : 'have' %>
+        played so far
+      </li>
     </ul>
     
   </div>
   
   <div class="span4">
     
-    <% if signed_in? %>
-    <a href="<%= url_for :controller => 'quiz', :action => 'index' %>" class="btn btn-large btn-block btn-primary">Play Now!</a>
+    <% if current_user.has_played_today? %>
+    <div class="well">
+      <p class="lead text-info">You've already played today!</p>
+    </div>
     <% else %>
-    <a href="#login" role="button" data-toggle="modal" class="btn btn-large btn-block btn-primary">Play Now!</a>
+        
+      <% if signed_in? %>
+      <a href="<%= url_for :controller => 'quiz', :action => 'index' %>" class="btn btn-large btn-block btn-primary">Play Now!</a>
+      <% else %>
+      <a href="#login" role="button" data-toggle="modal" class="btn btn-large btn-block btn-primary">Play Now!</a>
+      <% end %>
+    
     <% end %>
     
   </div>
   
 </div>
 
-<div class="row">
+<% if !@daily_quiz.quizzes.empty? %>
+<div class="row" id="todays-scores">
   
   <div class="span12">
     
@@ -46,9 +59,9 @@
         
         <tr>
           <th>Player</th>
-          <th>Correct</th>
-          <th>Time (s)</th>
-          <th>Score</th>
+          <th class="number">Correct</th>
+          <th class="number">Time (s)</th>
+          <th class="number">Score</th>
         </tr>
         
       </thead>
@@ -59,9 +72,9 @@
         <% @daily_quiz.quizzes.each do |quiz| %>
         <tr>
           <td><%= quiz.player.name %></td>
-          <td><%= quiz.correct_answers.count %></td>
-          <td>95</td>
-          <td>805</td>
+          <td class="number"><%= quiz.correct_answers.count %></td>
+          <td class="number"><%= quiz.time %></td>
+          <td class="number"><%= quiz.score %></td>
         </tr>
         <% end %>
         
@@ -72,4 +85,13 @@
   </div>
   
 </div>
+<% else %>
+<div class="row">
+  <div class="span12">
+
+    <p class="lead">Be the first of your friends to play today!</p>
+
+  </div>
+</div>
+<% end %>
 

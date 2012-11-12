@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112212617) do
+ActiveRecord::Schema.define(:version => 20121112220937) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_option_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20121112212617) do
     t.datetime "updated_at",    :null => false
     t.integer  "daily_quiz"
     t.integer  "daily_quiz_id"
+    t.time     "time"
   end
 
   add_index "quizzes", ["daily_quiz_id"], :name => "index_quizzes_on_daily_quiz_id"
