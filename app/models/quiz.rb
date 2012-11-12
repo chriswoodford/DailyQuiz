@@ -1,6 +1,6 @@
 class Quiz < ActiveRecord::Base
   belongs_to :player
-  belongs_to :quiz_definition
+  belongs_to :daily_quiz
   has_many :answers
   
   def correct_answers()

@@ -12,11 +12,11 @@
       
       <li>
         <i class="icon-globe"></i> 
-        Today's topic is: <%= @quiz.category.name %> 
-        (Difficulty: <%= @quiz.difficulty %> / 5)
+        Today's topic is: <%= @daily_quiz.quiz_definition.category.name %> 
+        (Difficulty: <%= @daily_quiz.quiz_definition.difficulty %> / 5)
       </li>
-      <li><i class="icon-time"></i> Today's game ends in: 7 hours, 41 mins</li>
-      <li><i class="icon-user"></i> 5 players have played so far</li>
+      <li><i class="icon-time"></i> Today's game ends in: <%= distance_of_time_in_words_to_now(DateTime.tomorrow, ) %></li>
+      <li><i class="icon-user"></i> <%= @daily_quiz.quizzes.count %> players have played so far</li>
       
     </ul>
     
@@ -56,41 +56,15 @@
       
       <tbody>
         
+        <% @daily_quiz.quizzes.each do |quiz| %>
         <tr>
-          <td>Chris</td>
-          <td>9</td>
+          <td><%= quiz.player.name %></td>
+          <td><%= quiz.correct_answers.count %></td>
           <td>95</td>
           <td>805</td>
         </tr>
+        <% end %>
         
-        <tr>
-          <td>Sarah</td>
-          <td>9</td>
-          <td>98</td>
-          <td>802</td>
-        </tr>
-
-        <tr>
-          <td>Grissom</td>
-          <td>8</td>
-          <td>50</td>
-          <td>750</td>
-        </tr>
-        
-        <tr>
-          <td>Willow</td>
-          <td>7</td>
-          <td>100</td>
-          <td>600</td>
-        </tr>
-
-        <tr>
-          <td>Horatio</td>
-          <td>3</td>
-          <td>200</td>
-          <td>100</td>
-        </tr>
-
       </tbody>
       
     </table>

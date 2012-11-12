@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @quiz = QuizDefinition.first
+    @daily_quiz = current_quiz
   end
   
 end

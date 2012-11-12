@@ -1,3 +1,6 @@
+INSERT INTO `daily_quizzes` (`id`, `date`, `quiz_definition_id`, `created_at`, `updated_at`)
+VALUES (1, '2012-11-12', 1, date('now'), date('now'));
+
 INSERT INTO `quiz_definitions` (`id`, `difficulty`, `category_id`, `created_at`, `updated_at`)
 VALUES (1, 4, 4, date('now'), date('now'));
 
