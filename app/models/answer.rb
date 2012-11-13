@@ -14,7 +14,7 @@ class Answer < ActiveRecord::Base
   belongs_to :quiz
   belongs_to :question_option
   
-  def is_correct?()
+  def is_correct?
     return self.question_option.is_correct?
   end
   

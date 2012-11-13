@@ -15,7 +15,7 @@ class Player < ActiveRecord::Base
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
-  has_many :quizzes
+  has_many :quizzes, dependent: :destroy
   
   attr_accessible :username, :name, :password, :password_confirmation
    
@@ -30,8 +30,8 @@ class Player < ActiveRecord::Base
   before_save { |player| player.username = username.downcase }
   before_save :create_remember_token
   
-  def has_played_today?()
-    return self.quizzes.where(date: Date.today)
+  def has_played_today?
+    return self.quizzes.joins(:daily_quiz).where('daily_quizzes.date' => Date.today).first
   end
   
   private
