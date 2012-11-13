@@ -15,7 +15,12 @@
         Today's topic is: <%= @daily_quiz.quiz_definition.category.name %> 
         (Difficulty: <%= @daily_quiz.quiz_definition.difficulty %> / 5)
       </li>
-      <li><i class="icon-time"></i> Today's game ends in: <%= distance_of_time_in_words_to_now(DateTime.tomorrow) %></li>
+      <li>
+        <i class="icon-time"></i>
+        <% tomorrow = DateTime.now + 1.days %>
+        <% midnight = DateTime.new(tomorrow.year,tomorrow.month,tomorrow.day,0,0,0,tomorrow.zone) %>
+        Today's game ends in: <%= distance_of_time_in_words_to_now(midnight) %>
+      </li>
       <li>
         <i class="icon-user"></i> 
         <%= pluralize(@daily_quiz.quizzes.count, 'player') %> 
