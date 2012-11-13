@@ -6,10 +6,7 @@ class QuizController < ApplicationController
 
     @quiz_definition = current_quiz.quiz_definition
     @quiz = current_quiz.quizzes.where(player_id: current_user).first
-    
-    if current_user.has_played_today?
-      render 'show'      
-    end
+    render 'show' if current_user.has_played_today?
  
   end
 
@@ -17,9 +14,12 @@ class QuizController < ApplicationController
 
     @quiz_definition = current_quiz.quiz_definition
 
+    params[:time_end] = Time.now.to_i if !params[:time_end] 
+
     @quiz = Quiz.new
     @quiz.player = current_user
     @quiz.daily_quiz = current_quiz
+    @quiz.time = params[:time_end].to_i - params[:time_start].to_i
     
     params[:questions].each do |question_id, option_id|
     

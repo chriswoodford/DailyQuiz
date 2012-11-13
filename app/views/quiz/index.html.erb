@@ -1,6 +1,17 @@
+<div id="loader">
+    
+  <h3>Loading Today's Quiz</h3>
+  <div class="progress progress-striped active">
+    <div class="bar" style="width: 100%;"></div>
+  </div>  
+  
+</div>
+
 <div id="quiz">
   
   <%= form_tag(quiz_take_path, { class: 'form-horizontal', method: 'post' } ) do %>
+    <%= hidden_field_tag 'time_start', Time.now.to_i %>
+    <%= hidden_field_tag 'time_end' %>
   
     <% @quiz_definition.questions.each do |question| %>
     <div class="row question">
