@@ -27,7 +27,8 @@ class Quiz < ActiveRecord::Base
   end
   
   def score
-    return (self.correct_answers.count * 100) - self.time.to_i
+    score = (self.correct_answers.count * 100) - self.time.to_i
+    return score > 0 ? score : 0
   end
   
 end

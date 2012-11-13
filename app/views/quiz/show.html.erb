@@ -17,7 +17,7 @@
             <li>
               <% answer = @quiz.answers[key] %>
               <span class="label label-<%= answer && answer.is_correct? ? 'success' : 'important' %>">Your Answer</span>
-              <% if answer %>
+              <% if answer && answer.question_option %>
                 <%= answer.question_option.answer %>
               <% end %>
             </li>
