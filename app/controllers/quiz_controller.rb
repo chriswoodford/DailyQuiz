@@ -14,8 +14,8 @@ class QuizController < ApplicationController
 
     @quiz_definition = current_quiz.quiz_definition
 
-    params[:time_end] = Time.now.to_i unless params[:time_end] 
-    params[:questions] = {} unless params[:questions]
+    params[:time_end] = Time.now.to_i unless params[:time_end]
+    params[:questions] = {} if params[:questions].nil?
 
     @quiz = Quiz.new
     @quiz.player = current_user
@@ -23,20 +23,18 @@ class QuizController < ApplicationController
     @quiz.time = params[:time_end].to_i - params[:time_start].to_i
     
     @quiz_definition.questions.each do |question|
-    #params[:questions].each do |question_id, option_id|
     
-      option_id = params[:questions][question.id]
+      option_id = params[:questions][question.id.to_s]
       option = QuestionOption.find(option_id) if option_id
-      
+     
       answer = Answer.new
       answer.quiz = @quiz
       answer.question_option = option
       answer.save
       
     end
-    
+ 
     @quiz.save
-    
     render 'show'
     
   end
