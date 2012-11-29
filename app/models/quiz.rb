@@ -7,7 +7,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  daily_quiz_id :integer
-#  time          :time
+#  time          :integer
 #
 
 class Quiz < ActiveRecord::Base
