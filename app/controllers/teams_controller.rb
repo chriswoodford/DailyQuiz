@@ -19,4 +19,13 @@ class TeamsController < ApplicationController
     
   end
   
+  def show
+    
+    @team = Team.find(params[:id])
+    
+    @daily_quiz = current_quiz
+    #raise "Oops! No quiz for today" if (@daily_quiz.nil?)
+    
+  end
+  
 end
