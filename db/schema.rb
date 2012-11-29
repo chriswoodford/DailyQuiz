@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113061238) do
+ActiveRecord::Schema.define(:version => 20121129204125) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_option_id"
@@ -79,5 +79,13 @@ ActiveRecord::Schema.define(:version => 20121113061238) do
   end
 
   add_index "quizzes", ["daily_quiz_id"], :name => "index_quizzes_on_daily_quiz_id"
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "teams", ["name"], :name => "index_teams_on_name", :unique => true
 
 end

@@ -1,11 +1,12 @@
 QuizApplication::Application.routes.draw do
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   root :to => "home#index"
   
   resources :users
+  resources :teams, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/quiz', to: 'quiz#index'
@@ -13,6 +14,10 @@ QuizApplication::Application.routes.draw do
   
   match '/login',  to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete  
+
+  match '/signup', to: 'teams#new'
+  
+  match '/teams/:id/owner/new', to: 'users#new', as: :signup_step2
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

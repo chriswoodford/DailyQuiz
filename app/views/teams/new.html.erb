@@ -1,0 +1,35 @@
+<div class="row" id="signup">
+  
+  <div class="span8 offset2">
+  
+    <div class="hero-unit">
+      <h2>Create your DailyQuiz now!</h2>
+      <p>
+        The first thing that you have to do, is create your quiz team.
+        After that, you'll create your player account (or login if you already have one).
+        Then you can start inviting people to your new daily quiz team and you'll
+        be all set! 
+      </p>
+    </div>
+  
+    <%= form_for @team, html: { class: "form-horizontal" } do |t| %>
+  
+      <%= render 'shared/form_errors', object: t.object %>
+  
+      <div class="control-group">
+        <%= t.label :name, "Team Name", class: "control-label" %>
+        <div class="controls">
+          <%= t.text_field :name, class: "input-xlarge", rel: "popover" %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= t.submit "Create your Team!", :class => "btn btn-primary" %>
+        <%= link_to 'Cancel', root_path, class: "btn" %>
+      </div>
+
+    <% end %>
+    
+  </div>
+  
+</div>
