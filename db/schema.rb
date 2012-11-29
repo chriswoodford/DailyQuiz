@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129204125) do
+ActiveRecord::Schema.define(:version => 20121129213850) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_option_id"
@@ -79,6 +79,17 @@ ActiveRecord::Schema.define(:version => 20121129204125) do
   end
 
   add_index "quizzes", ["daily_quiz_id"], :name => "index_quizzes_on_daily_quiz_id"
+
+  create_table "team_members", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "team_members", ["player_id"], :name => "index_team_members_on_player_id"
+  add_index "team_members", ["team_id", "player_id"], :name => "index_team_members_on_team_id_and_player_id", :unique => true
+  add_index "team_members", ["team_id"], :name => "index_team_members_on_team_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,61 @@
+<div class="row" id="signup">
+  
+  <div class="span8 offset2">
+  
+    <div class="hero-unit">
+      <h2>Create your Player Account!</h2>
+      <p>
+        Once you've created your player account (or logged in, if you already have a player account),
+        you'll be on your way to doing the quizzes!
+      </p>
+    </div>
+  
+    <%= form_for @player, html: { class: "form-horizontal" } do |p| %>
+  
+      <%= render 'shared/form_errors', object: p.object %>
+
+      <%= hidden_field :team, :id %> 
+
+      <div class="control-group">
+        <%= p.label :name, class: "control-label" %>
+        <div class="controls">
+          <%= p.text_field :name, class: "input-xlarge" %>
+        </div>
+      </div>
+        
+      <div class="control-group">
+        <%= p.label :username, "Email Address", class: "control-label" %>
+        <div class="controls">
+          <%= p.text_field :username, class: "input-xlarge" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= p.label :password, class: "control-label" %>
+        <div class="controls">
+          <%= p.password_field :password, class: "input-xlarge" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= p.label :password_confirmation, "Confirmation", class: "control-label" %>
+        <div class="controls">
+          <%= p.password_field :password_confirmation, class: "input-xlarge" %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= p.submit "Create your Account", :class => "btn btn-primary" %>
+        <%= link_to 'Cancel', root_path, class: "btn" %>
+      </div>
+
+    <% end %>
+
+  </div>
+  
+</div>
+
+<%= debug(@player.teams) %>
+<%= debug(@team.members) %>
+<%= debug(params) %>
+

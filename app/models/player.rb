@@ -16,6 +16,8 @@ class Player < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   has_many :quizzes, dependent: :destroy
+  has_many :team_members, foreign_key: "player_id", dependent: :destroy
+  has_many :teams, through: :team_members, source: :team
   
   attr_accessible :username, :name, :password, :password_confirmation
    

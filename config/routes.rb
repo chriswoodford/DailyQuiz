@@ -5,7 +5,7 @@ QuizApplication::Application.routes.draw do
 
   root :to => "home#index"
   
-  resources :users
+  resources :players
   resources :teams, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -17,7 +17,7 @@ QuizApplication::Application.routes.draw do
 
   match '/signup', to: 'teams#new'
   
-  match '/teams/:id/owner/new', to: 'users#new', as: :signup_step2
+  match '/teams/:teamId/owner/new', to: 'players#new', as: :signup_step2
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
