@@ -33,7 +33,13 @@ class Player < ActiveRecord::Base
   before_save :create_remember_token
   
   def has_played_today?
-    return self.quizzes.joins(:daily_quiz).where('daily_quizzes.date' => Date.today).first
+    self.quizzes.joins(:daily_quiz).where('daily_quizzes.date' => Date.today).first
+  end
+  
+  def points
+    
+    
+    
   end
   
   private

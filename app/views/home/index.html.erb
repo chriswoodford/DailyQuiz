@@ -19,14 +19,18 @@
     
     <h2>Today's Team Standings</h2>
     
+    <% if @daily_quiz %>
     <ol>
       
-      <li>The Quizaniacs - 400 pts</li>
-      <li>The Testers - 100 pts</li>
-      <li>The Testers - 100 pts</li>
-      <li>The Testers - 100 pts</li>
+      <% @teams.each do |t| %>
+        <% next if !t.has_played_today? %>
+      <li><%= t.name %> - <%= t.points %> pts</li>
+      <% end %>
       
     </ol>
+    <% else %>
+    <div class="alert alert-info">Oops! There's no quiz today</div> 
+    <% end %>
     
   </div>
  
