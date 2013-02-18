@@ -10,6 +10,7 @@ QuizApplication::Application.routes.draw do
   resources :quizzes
   resources :sessions, only: [:new, :create, :destroy]
 
+  match '/home',  to: 'home#home'
   match '/login',  to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete
 

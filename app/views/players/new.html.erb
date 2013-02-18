@@ -1,7 +1,7 @@
 <div class="row" id="signup">
-  
+
   <div class="span8 offset2">
-  
+
     <div class="hero-unit">
       <h2>Create your Player Account!</h2>
       <p>
@@ -9,12 +9,12 @@
         you'll be on your way to doing the quizzes!
       </p>
     </div>
-  
-    <%= form_for @player, html: { class: "form-horizontal" } do |p| %>
-  
-      <%= render 'shared/form_errors', object: p.object %>
 
-      <%= hidden_field :team, :id %> 
+    <%= form_for @player, html: { class: "form-horizontal" } do |p| %>
+
+      <%= render 'shared/form_messages', object: p.object %>
+
+      <%= hidden_field :team, :id %>
 
       <div class="control-group">
         <%= p.label :name, class: "control-label" %>
@@ -22,7 +22,7 @@
           <%= p.text_field :name, class: "input-xlarge" %>
         </div>
       </div>
-        
+
       <div class="control-group">
         <%= p.label :username, "Email Address", class: "control-label" %>
         <div class="controls">
@@ -52,7 +52,7 @@
     <% end %>
 
   </div>
-  
+
 </div>
 
 <%= debug(@player.teams) %>
