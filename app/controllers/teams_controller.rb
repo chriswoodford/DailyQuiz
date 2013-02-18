@@ -1,13 +1,11 @@
 class TeamsController < ApplicationController
-  
+
   def new
-  
     @team = Team.new
-  
   end
-  
+
   def create
-    
+
     @team = Team.new(params[:team])
 
     if @team.save
@@ -16,14 +14,12 @@ class TeamsController < ApplicationController
     else
       render 'new'
     end
-    
+
   end
-  
+
   def show
-    
     @team = Team.find(params[:id])
     @daily_quiz = current_quiz
-    
   end
-  
+
 end
