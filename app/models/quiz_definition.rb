@@ -12,5 +12,5 @@
 class QuizDefinition < ActiveRecord::Base
   belongs_to :category
   has_many :questions, dependent: :destroy
-  attr_accessible :difficulty 
+  attr_accessible :difficulty, :category
 end
